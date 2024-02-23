@@ -4,6 +4,7 @@ import  HomeScreen from "./screens/HomeScreen";
 import RegisterScreen from './screens/RegisterScreen';
 import LoginScreen from './screens/LoginScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import ProfileUpdateScreen from './screens/ProfileUpdateScreen';
 function App() {
   return (
     <Router>
@@ -12,6 +13,7 @@ function App() {
         <Route path="/register/" element={<RegisterScreen />} />
         <Route path="/login/" element={<LoginScreen />} />
         <Route path="/profile/" element={<ProfileScreen />} />
+        <Route path="/profile/update/" element={<ProfileUpdateScreen />} />
       </Routes>
     </Router>
   );

@@ -17,7 +17,7 @@ function ProfileScreen() {
     <div>
       <h2>User Profile</h2>
       {loading && <Loader />}
-      {error && <Message />}
+      {error && <Message error={error} />}
       {user && (
         <div>
           <p>Username: {user.username}</p>
