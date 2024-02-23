@@ -6,6 +6,10 @@ import {
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGOUT,
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_SUCCESS,
+  USER_DETAILS_FAIL,
+  USER_DETAILS_RESET,
 } from "../constants/userConstants";
 
 const initialState = {
@@ -34,7 +38,7 @@ export const userRegisterReducer = (state = initialState, action) => {
         error: action.payload,
       };
     case USER_LOGOUT:
-      return {}  
+      return {};
     default:
       return state;
   }
@@ -50,7 +54,22 @@ export const userLoginReducer = (state = initialState, action) => {
       return { ...state, loading: false, error: action.payload };
 
     case USER_LOGOUT:
-      return {}  
+      return {};
+    default:
+      return state;
+  }
+};
+
+export const userDetailsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case USER_DETAILS_REQUEST:
+      return { ...state, loading: true };
+    case USER_DETAILS_SUCCESS:
+      return { ...state, loading: false, user: action.payload };
+    case USER_DETAILS_FAIL:
+      return {...state, loading: false, error: action.payload}
+    case USER_DETAILS_RESET:
+      return {user: {}}  
     default:
       return state
   }

@@ -8,16 +8,18 @@ function RegisterScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const userRegister = useSelector((state) => state.userRegister)
+  const {loading, error, userInfo} = userRegister
+
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("clicked the form");
-    console.log("username", username);
     dispatch(register(username, email, password));
   };
-
+  
   return (
     <div>
       <h2>UserRegister</h2>
+      { error && <p>{error}</p>}
       <form onSubmit={submitHandler}>
         <label>
           Username:

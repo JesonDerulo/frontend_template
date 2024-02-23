@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "../actions/userActions";
 import { Link } from "react-router-dom";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 
 function LoginScreen({ history }) {
   const [email, setEmail] = useState("");
@@ -48,8 +50,9 @@ function LoginScreen({ history }) {
         />
         <button type="submit">Login</button>
       </form>
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      {loading && <Loader />}
+      {error && <Message error={error} />}
+      
       New user? <Link to={"/register/"}>Register</Link>
       {userInfo ? <button onClick={logoutHandler}>Logout</button> : null}
     </div>
