@@ -5,11 +5,13 @@ import RegisterScreen from './screens/RegisterScreen';
 import LoginScreen from './screens/LoginScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import ProfileUpdateScreen from './screens/ProfileUpdateScreen';
+import ProductScreen from './screens/ProductScreen';
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomeScreen />} />
+        <Route path="/product/:id/" element={<ProductScreen />} />
         <Route path="/register/" element={<RegisterScreen />} />
         <Route path="/login/" element={<LoginScreen />} />
         <Route path="/profile/" element={<ProfileScreen />} />

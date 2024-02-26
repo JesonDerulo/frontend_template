@@ -36,7 +36,6 @@ function ProfileUpdateScreen() {
        setTimeout(() => {
          dispatch({ type: USER_UPDATE_PROFILE_RESET });
        }, 5000);
-
        
      } else {
        setUsername(user.username);
