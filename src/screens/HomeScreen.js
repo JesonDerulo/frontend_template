@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react'
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../actions/productActions";
 
@@ -23,7 +24,10 @@ const HomeScreen = () =>  {
             <li key={product.id}>
               <div key={product.id}>
                 {/* Render individual product details */}
-                <p>{product.name}</p>
+                <Link to={`/product/${product.id}/`}>
+                  {" "}
+                  <p>{product.name}</p>
+                </Link>
                 {/* Add other product details as needed */}
               </div>
             </li>

@@ -8,6 +8,7 @@ function ProductScreen() {
   const productId = useParams().id;
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
 
   const productDetails = useSelector((state) => state.productDetails);
@@ -18,6 +19,9 @@ function ProductScreen() {
   }, [dispatch, productId]);
 
 
+ const addToCartHandler = (id) => {
+  navigate(`/cart/${productId}/`);
+ }
 
   return (
     <div>
@@ -32,6 +36,9 @@ function ProductScreen() {
           <p>{product.name}</p>
           <p>{product.id}</p>
           <p>{product.description}</p>
+          <button onClick={() => addToCartHandler(product.id)}>
+            Add to Cart
+          </button>
         </>
       )}
     </div>
