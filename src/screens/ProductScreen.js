@@ -26,7 +26,6 @@ function ProductScreen() {
   return (
     <div>
       <h2> Product Page</h2>
-
       {loading ? (
         <Loader />
       ) : error ? (
@@ -39,6 +38,24 @@ function ProductScreen() {
           <button onClick={() => addToCartHandler(product.id)}>
             Add to Cart
           </button>
+
+          {product.reviews && product.reviews.length > 0 ? (
+            <div>
+              <h3>Reviews:</h3>
+              {product.reviews.map((review, index) => (
+                <div key={review.id}>
+                  <p>
+                    Name: {review.name} -- Rating:{review.rating}
+                  </p>
+                  <p>Comment: {review.comment}</p>
+                  {index < product.reviews.length - 1 && <br />}{" "}
+                  {/* Add break if it's not the last review */}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>No reviews available for this product.</p>
+          )}
         </>
       )}
     </div>
