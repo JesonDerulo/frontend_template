@@ -27,10 +27,12 @@ export const cartReducer = (state = initialState, action) => {
           
         };
       } else {
-        return {
+        const newState = {
           ...state, 
           cartItems: [...state.cartItems, item]
         }
+        console.log('updated state', newState)
+        return newState
       }
     case CART_REMOVE_ITEM:
       const productId = action.payload
@@ -39,6 +41,11 @@ export const cartReducer = (state = initialState, action) => {
         ...state,
         cartItems: state.cartItems.filter((x) => x.id !== productId),
       };
+
+    case CART_CLEAR_ITEMS:
+      return {...state,
+              cartItems: []
+      }  
     default:
       return state;
   }

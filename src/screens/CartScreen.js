@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { UseDispatch, useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../actions/cartActions";
+import { createOrder } from "../actions/orderActions";
 function CartScreen() {
   const productId = useParams().id;
 
@@ -15,6 +16,12 @@ function CartScreen() {
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+
+  // Calculate total price
+  const totalPrice = cartItems.reduce((acc, item) => acc + Number(item.price), 0);
+
+  // Check if totalPrice is a number before using toFixed
+  const formattedTotalPrice = isNaN(totalPrice) ? 0 : totalPrice.toFixed(2);
 
   useEffect(() => {
     if (productId) {
@@ -30,6 +37,18 @@ function CartScreen() {
     dispatch(removeFromCart(id));
   };
 
+  const placeOrder = () => {
+    
+    console.log("check it out now");
+    dispatch(
+      createOrder({
+        orderItems: cartItems,
+        totalPrice: formattedTotalPrice,
+      })
+    );
+    
+  }
+
   return (
     <div>
       <h2>Cart Screen</h2>
@@ -38,10 +57,12 @@ function CartScreen() {
           <div key={item.id}>
             <p>
               {item.name} - ${item.price}{" "}
-              <button onClick={() => removeHandler(item.id)}>reomve</button>
+              <button onClick={() => removeHandler(item.id)}>Remove</button>
             </p>
           </div>
         ))}
+      <p>Total Price: ${formattedTotalPrice}</p>
+      <button onClick={placeOrder}>Check out</button>
     </div>
   );
 }
